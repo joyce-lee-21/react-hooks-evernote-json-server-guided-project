@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 
 function NoteEditor({note, updateNote, cancelEdit}) {
   const [title, setTitle] = useState(note[0].title)
@@ -38,7 +39,9 @@ function NoteEditor({note, updateNote, cancelEdit}) {
       <textarea name="body" onChange={e => setBody(e.target.value)} value={body}/>
       <div className="button-row">
         <input className="button" type="submit" value="Save" />
-        <button type="button" onClick={handleClick}>Cancel</button>
+        <Link to={`/${note[0].id}`}>
+          <button type="button" onClick={handleClick}>Cancel</button>
+        </Link>
       </div>
     </form>
   );

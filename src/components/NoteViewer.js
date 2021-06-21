@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 function NoteViewer({note, setEdit}) {
   // console.log(note)
@@ -11,7 +12,9 @@ function NoteViewer({note, setEdit}) {
     <>
       <h2>{note[0].title}</h2>
       <p>{note[0].body}</p>
-      <button onClick={toggleEdit}>Edit</button>
+      <Link to={`/${note[0].id}/edit`}>
+        <button onClick={toggleEdit}>Edit</button>
+      </Link>
     </>
   );
 }

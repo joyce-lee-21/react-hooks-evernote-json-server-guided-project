@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import Sidebar from "./Sidebar";
 import Content from "./Content";
-import { BrowserRouter } from 'react-router-dom';
 
 function NoteContainer() {
   const [notes, setNotes] = useState([])
@@ -78,12 +77,10 @@ function NoteContainer() {
       <Search searchTitle={onSearchTitle} searchFilter={onSearchFilter} filterBy={filterBy}/>
       <div className="container">
         <Sidebar notes={filteredNotes} selectedNoteId={onSelectedNoteId} newNote={onNewNote}/>
-        <BrowserRouter>
-          <Content editView={editView} note={viewNote} noteId={noteId} updateNote={onUpdateNote} setEdit={setEdit} cancelEdit={onCancelEdit}/>
-        </BrowserRouter>
+        <Content editView={editView} note={viewNote} noteId={noteId} updateNote={onUpdateNote} setEdit={setEdit} cancelEdit={onCancelEdit}/>
       </div>
     </>
-  );
+  )
 }
 
 export default NoteContainer;

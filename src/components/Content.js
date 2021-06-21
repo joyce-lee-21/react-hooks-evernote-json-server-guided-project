@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import NoteEditor from "./NoteEditor";
 import NoteViewer from "./NoteViewer";
 import Instructions from "./Instructions";
+import { Route, Switch } from 'react-router-dom';
 
 /*
   Advice: If you cannot figure out how to get this component to work,
@@ -17,18 +18,31 @@ function Content({editView, note, noteId, updateNote, setEdit, cancelEdit}) {
 
   //conditional for if noteId !== NoteEditor noteId, set view to false
 
+  // const getContent = () => {
+  //   if (editView) {
+  //     return <NoteEditor note={note} noteId={noteId} updateNote={updateNote} cancelEdit={cancelEdit}/>;
+  //   } else if (noteId !== 0) {
+  //     return <NoteViewer note={note} setEdit={setEdit}/>;
+  //   } else {
+  //     return <Instructions />;
+  //   }
+  // };
 
-  const getContent = () => {
-    if (editView) {
-      return <NoteEditor note={note} noteId={noteId} updateNote={updateNote} cancelEdit={cancelEdit}/>;
-    } else if (noteId !== 0) {
-      return <NoteViewer note={note} setEdit={setEdit}/>;
-    } else {
-      return <Instructions />;
-    }
-  };
-
-  return <div className="master-detail-element detail">{getContent()}</div>;
+  return (
+    <div className="master-detail-element detail">
+      <Switch>
+        <Route path = {`/${noteId}/edit`}>
+          <NoteEditor note={note} noteId={noteId} updateNote={updateNote} cancelEdit={cancelEdit}/>
+        </Route>
+        <Route exact path = {`/${noteId}`}>
+          <NoteViewer note={note} setEdit={setEdit}/>
+        </Route>
+        <Route exact path = "/">
+          <Instructions />
+        </Route>
+      </Switch>
+    </div>
+  )
 }
 
 export default Content;
