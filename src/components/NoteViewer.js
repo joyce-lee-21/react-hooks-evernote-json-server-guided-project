@@ -1,11 +1,17 @@
 import React from "react";
 
-function NoteViewer() {
+function NoteViewer({note, setEdit}) {
+  // console.log(note)
+
+  const toggleEdit = () => {
+    setEdit(true)
+  }
+
   return (
     <>
-      <h2>Title</h2>
-      <p>Body</p>
-      <button>Edit</button>
+      <h2>{note[0].title}</h2>
+      <p>{note[0].body}</p>
+      <button onClick={toggleEdit}>Edit</button>
     </>
   );
 }
